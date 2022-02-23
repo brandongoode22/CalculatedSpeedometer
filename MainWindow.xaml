@@ -30,7 +30,6 @@
                     </Button>
 
                 </StackPanel>
-                <Button x:Name="Calculate" Height="40" Click="Calculate_Click">Calculate</Button>
             </StackPanel>
         </Border>
     </StackPanel>
