@@ -22,6 +22,7 @@ namespace CalculatedSpeedometer
     {
         int[] myValues = new int[2];
         string choice;
+        int calculatedSum;
         public MainWindow()
         {
             InitializeComponent();
@@ -80,7 +81,8 @@ namespace CalculatedSpeedometer
             if(choice == "plus")
             {
                 myTextBox.Clear();
-                myTextBox.Text = (myValues[0] + myValues[1]).ToString();
+                calculatedSum = myValues[0] + myValues[1];
+                myTextBox.Text = calculatedSum.ToString();
 
             }
 
@@ -120,8 +122,9 @@ namespace CalculatedSpeedometer
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
-            Speedometer pg = new();
+            Speedometer pg = new Speedometer();
             this.Content = pg;
+            pg.GaugeAttributes.Value = calculatedSum;
         }
     }
 }

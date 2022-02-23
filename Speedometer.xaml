@@ -10,6 +10,21 @@
       Title="Speedometer">
 
     <Grid>
-        <gauge:SfCircularGauge></gauge:SfCircularGauge>
+        <gauge:SfCircularGauge>
+            <gauge:SfCircularGauge.Scales>
+                <gauge:CircularScale RimStroke="Black">
+                    <gauge:CircularScale.Pointers>
+                        <gauge:CircularPointer x:Name="GaugeAttributes" PointerType="NeedlePointer"
+                                   Value="60"
+                                   NeedleLengthFactor="0.5"
+                                   NeedlePointerType="Triangle"
+                                   PointerCapDiameter="9"
+                                   NeedlePointerStroke="Red"
+                                   KnobFill="Red"
+                                   NeedlePointerStrokeThickness="7" />
+                    </gauge:CircularScale.Pointers>
+                </gauge:CircularScale>
+            </gauge:SfCircularGauge.Scales>
+        </gauge:SfCircularGauge>
     </Grid>
 </Page>
