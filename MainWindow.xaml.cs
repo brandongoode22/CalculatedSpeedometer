@@ -105,6 +105,7 @@ namespace CalculatedSpeedometer
 
             }
 
+
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -115,6 +116,12 @@ namespace CalculatedSpeedometer
 
             myTextBox.Focus();
 
+        }
+
+        private void Calculate_Click(object sender, RoutedEventArgs e)
+        {
+            Speedometer pg = new();
+            this.Content = pg;
         }
     }
 }
