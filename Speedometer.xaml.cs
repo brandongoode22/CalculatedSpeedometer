@@ -24,5 +24,12 @@ namespace CalculatedSpeedometer
         {
             InitializeComponent();
         }
+
+        private void returnToMain_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            this.Content = mw;
+
+        }
     }
 }

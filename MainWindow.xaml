@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CalculatedSpeedometer"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         mc:Ignorable="d"
-        Title="CalculatedSpeedometer" Height="350" Width="600">
+        Title="CalculatedSpeedometer" Height="450" Width="600">
 
     <StackPanel x:Name="calculator" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Border BorderThickness="2" BorderBrush="Black">

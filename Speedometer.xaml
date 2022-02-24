@@ -6,15 +6,15 @@
       xmlns:local="clr-namespace:CalculatedSpeedometer"
       xmlns:gauge="clr-namespace:Syncfusion.UI.Xaml.Gauges;assembly=Syncfusion.SfGauge.Wpf"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="800"
       Title="Speedometer">
 
-    <Grid>
-        <gauge:SfCircularGauge>
+    <StackPanel>
+        <gauge:SfCircularGauge Height="300">
             <gauge:SfCircularGauge.Scales>
-                <gauge:CircularScale RimStroke="Black">
+                <gauge:CircularScale x:Name="GaugeCharacteristics" RimStroke="Black">
                     <gauge:CircularScale.Pointers>
-                        <gauge:CircularPointer x:Name="GaugeAttributes" PointerType="NeedlePointer"
+                        <gauge:CircularPointer x:Name="GaugeValues" PointerType="NeedlePointer"
                                    Value="60"
                                    NeedleLengthFactor="0.5"
                                    NeedlePointerType="Triangle"
@@ -26,5 +26,6 @@
                 </gauge:CircularScale>
             </gauge:SfCircularGauge.Scales>
         </gauge:SfCircularGauge>
-    </Grid>
+        <Button x:Name="returnToMain" Click="returnToMain_Click" Height="40" Width="200" Background="DarkSlateGray" Foreground="GhostWhite">Calculate Another Value</Button>
+    </StackPanel>
 </Page>

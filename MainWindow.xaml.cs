@@ -20,9 +20,9 @@ namespace CalculatedSpeedometer
     /// </summary>
     public partial class MainWindow : Window
     {
-        int[] myValues = new int[2];
+        double[] myValues = new double[2];
         string choice;
-        int calculatedValue;
+        double calculatedValue;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            myValues[0] = int.Parse(myValueStr);
+            myValues[0] = double.Parse(myValueStr);
             myTextBox.Clear();
             choice = "plus";
             myTextBox.Focus();
@@ -46,7 +46,7 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            myValues[0] = int.Parse(myValueStr);
+            myValues[0] = double.Parse(myValueStr);
             myTextBox.Clear();
             choice = "minus";
             myTextBox.Focus();
@@ -56,7 +56,7 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            myValues[0] = int.Parse(myValueStr);
+            myValues[0] = double.Parse(myValueStr);
             myTextBox.Clear();
             choice = "multiply";
             myTextBox.Focus();
@@ -66,7 +66,7 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            myValues[0] = int.Parse(myValueStr);
+            myValues[0] = double.Parse(myValueStr);
             myTextBox.Clear();
             choice = "divide";
             myTextBox.Focus();
@@ -78,6 +78,7 @@ namespace CalculatedSpeedometer
             myValueStr = myTextBox.Text;
             myValues[1] = int.Parse(myValueStr);
             Speedometer pg = new Speedometer();
+            double max;
 
             if (choice == "plus")
             {
@@ -101,8 +102,20 @@ namespace CalculatedSpeedometer
                 calculatedValue = myValues[0] / myValues[1];
             }
 
+            if (calculatedValue != 0)
+            {
+              
+                max = Math.Pow(10,Math.Floor(Math.Log10(calculatedValue) + 1));
+            }
+
+            else
+            {
+                max = 1;
+            }
+            this.Content = calculatedValue;
+            pg.GaugeCharacteristics.EndValue = max; 
             this.Content = pg;
-            pg.GaugeAttributes.Value = calculatedValue;
+            pg.GaugeValues.Value = calculatedValue;
 
 
         }
