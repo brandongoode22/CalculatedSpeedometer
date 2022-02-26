@@ -34,7 +34,15 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            myValues[0] = double.Parse(myValueStr);
+            try
+            {
+                myValues[0] = double.Parse(myValueStr);
+            }
+
+            catch(Exception)
+            {
+                MessageBox.Show("Must enter a numeric value");
+            }
             myTextBox.Clear();
             choice = "plus";
             myTextBox.Focus();
@@ -46,7 +54,15 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            myValues[0] = double.Parse(myValueStr);
+            try
+            {
+                myValues[0] = double.Parse(myValueStr);
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Must enter a numeric value");
+            }
             myTextBox.Clear();
             choice = "minus";
             myTextBox.Focus();
@@ -56,7 +72,15 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            myValues[0] = double.Parse(myValueStr);
+            try
+            {
+                myValues[0] = double.Parse(myValueStr);
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Must enter a numeric value");
+            }
             myTextBox.Clear();
             choice = "multiply";
             myTextBox.Focus();
@@ -66,7 +90,15 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            myValues[0] = double.Parse(myValueStr);
+            try
+            {
+                myValues[0] = double.Parse(myValueStr);
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Must enter a numeric value");
+            }
             myTextBox.Clear();
             choice = "divide";
             myTextBox.Focus();
@@ -78,7 +110,16 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            myValues[1] = double.Parse(myValueStr);
+            try
+            {
+                myValues[1] = double.Parse(myValueStr);
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Must enter a numeric value");
+                return;
+            }
             Speedometer pg = new Speedometer();
             double max;
 
