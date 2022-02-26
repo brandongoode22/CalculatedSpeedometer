@@ -16,119 +16,20 @@ using System.Windows.Shapes;
 namespace CalculatedSpeedometer
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Calculator.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        double[] myValues = new double[2];
-        string choice;
-        double calculatedValue;
         public MainWindow()
         {
             InitializeComponent();
-
-            
         }
 
-        private void Plus_Click(object sender, RoutedEventArgs e)
+        private void goToCalculator_Click(object sender, RoutedEventArgs e)
         {
-            string myValueStr;
-            myValueStr = myTextBox.Text;
-            myValues[0] = double.Parse(myValueStr);
-            myTextBox.Clear();
-            choice = "plus";
-            myTextBox.Focus();
-
-            
-        }
-
-        private void Minus_Click(object sender, RoutedEventArgs e)
-        {
-            string myValueStr;
-            myValueStr = myTextBox.Text;
-            myValues[0] = double.Parse(myValueStr);
-            myTextBox.Clear();
-            choice = "minus";
-            myTextBox.Focus();
-        }
-
-        private void Multiply_Click(object sender, RoutedEventArgs e)
-        {
-            string myValueStr;
-            myValueStr = myTextBox.Text;
-            myValues[0] = double.Parse(myValueStr);
-            myTextBox.Clear();
-            choice = "multiply";
-            myTextBox.Focus();
-        }
-
-        private void Divide_Click(object sender, RoutedEventArgs e)
-        {
-            string myValueStr;
-            myValueStr = myTextBox.Text;
-            myValues[0] = double.Parse(myValueStr);
-            myTextBox.Clear();
-            choice = "divide";
-            myTextBox.Focus();
-        }
-
-        private void Equals_Click(object sender, RoutedEventArgs e)
-        {
-            string myValueStr;
-            myValueStr = myTextBox.Text;
-            myValues[1] = int.Parse(myValueStr);
-            Speedometer pg = new Speedometer();
-            double max;
-
-            if (choice == "plus")
-            {
-                calculatedValue = myValues[0] + myValues[1];
-
-            }
-
-            else if(choice == "minus")
-            {
-                calculatedValue = myValues[0] - myValues[1];
-
-            }
-
-            else if (choice == "multiply")
-            {
-                calculatedValue = myValues[0] * myValues[1];
-            }
-
-            else if (choice == "divide")
-            {
-                calculatedValue = myValues[0] / myValues[1];
-            }
-
-            if (calculatedValue != 0)
-            {
-              
-                max = Math.Pow(10,Math.Floor(Math.Log10(calculatedValue) + 1));
-            }
-
-            else
-            {
-                max = 1;
-            }
-            this.Content = calculatedValue;
-            pg.GaugeCharacteristics.EndValue = max; 
-            this.Content = pg;
-            pg.GaugeValues.Value = calculatedValue;
-
+            main.Content = new Calculator();
+            goToCalculator.Visibility = Visibility.Hidden;
 
         }
-
-        private void Clear_Click(object sender, RoutedEventArgs e)
-        {
-            myTextBox.Clear();
-            myValues[0] = 0;
-            myValues[1] = 0;
-
-            myTextBox.Focus();
-
-        }
-
     }
 }

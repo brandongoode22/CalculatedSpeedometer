@@ -8,29 +8,8 @@
         mc:Ignorable="d"
         Title="CalculatedSpeedometer" Height="450" Width="600">
 
-    <StackPanel x:Name="calculator" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Border BorderThickness="2" BorderBrush="Black">
-            <StackPanel>
-                <TextBlock Margin="0,0,0,1" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="13" FontFamily="Verdana"><Bold>Positive Integer Calculator</Bold></TextBlock>
-                <TextBox x:Name="myTextBox" HorizontalContentAlignment="Right" FontSize="14" VerticalContentAlignment="Center" Height="30" ></TextBox>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="Plus" Click="Plus_Click" FontSize="30" Height="50" Width="100">+</Button>
-                    <Button x:Name="Minus" Click="Minus_Click" FontSize="30" Height="50" Width="100">-</Button>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="Multiply" Click="Multiply_Click" FontSize="30" Height="50" Width="100">x</Button>
-                    <Button x:Name="Divide" Click="Divide_Click" FontSize="30" Height="50" Width="100">÷</Button>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="Clear" FontSize="14" Width="100" Height="50" Click="Clear_Click" >
-                        <Italic>Clear</Italic>
-                    </Button>
-                    <Button x:Name="Equals" Click="Equals_Click" FontSize="15" Height="50" Width="100">
-                        <Bold>Enter</Bold>
-                    </Button>
-
-                </StackPanel>
-            </StackPanel>
-        </Border>
-    </StackPanel>
+    <StackPanel >
+        <Frame x:Name="main" NavigationUIVisibility="Hidden" ></Frame>
+        <Button x:Name="goToCalculator" Click="goToCalculator_Click" >Go to Calculator</Button>
+        </StackPanel>
 </Window>

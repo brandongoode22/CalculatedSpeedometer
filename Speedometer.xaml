@@ -26,6 +26,9 @@
                 </gauge:CircularScale>
             </gauge:SfCircularGauge.Scales>
         </gauge:SfCircularGauge>
-        <Button x:Name="returnToMain" Click="returnToMain_Click" Height="40" Width="200" Background="DarkSlateGray" Foreground="GhostWhite">Calculate Another Value</Button>
+
+        <Button x:Name="returnToCalculator" Click="returnToCalculator_Click" Height="40" Width="200" Background="DarkSlateGray" Foreground="GhostWhite">Calculate Another Value</Button>
+
     </StackPanel>
+   
 </Page>
