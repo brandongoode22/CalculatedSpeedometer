@@ -119,7 +119,7 @@ namespace CalculatedSpeedometer
             if (calculatedValue < 0)
             {
                 myTextBox.Clear();
-                MessageBox.Show("Cannot calculate non-positive answers");
+                NavigationService.Navigate(new ErrorPage());
                 return;
             }
 
