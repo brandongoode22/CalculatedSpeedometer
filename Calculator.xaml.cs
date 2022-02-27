@@ -34,15 +34,7 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            try
-            {
-                myValues[0] = double.Parse(myValueStr);
-            }
-
-            catch(Exception)
-            {
-                MessageBox.Show("Must enter a numeric value");
-            }
+            myValues[0] = double.Parse(myValueStr);
             myTextBox.Clear();
             choice = "plus";
             myTextBox.Focus();
@@ -54,15 +46,7 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            try
-            {
-                myValues[0] = double.Parse(myValueStr);
-            }
-
-            catch (Exception)
-            {
-                MessageBox.Show("Must enter a numeric value");
-            }
+            myValues[0] = double.Parse(myValueStr);
             myTextBox.Clear();
             choice = "minus";
             myTextBox.Focus();
@@ -72,15 +56,7 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            try
-            {
-                myValues[0] = double.Parse(myValueStr);
-            }
-
-            catch (Exception)
-            {
-                MessageBox.Show("Must enter a numeric value");
-            }
+            myValues[0] = double.Parse(myValueStr);
             myTextBox.Clear();
             choice = "multiply";
             myTextBox.Focus();
@@ -90,15 +66,7 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = myTextBox.Text;
-            try
-            {
-                myValues[0] = double.Parse(myValueStr);
-            }
-
-            catch (Exception)
-            {
-                MessageBox.Show("Must enter a numeric value");
-            }
+            myValues[0] = double.Parse(myValueStr);
             myTextBox.Clear();
             choice = "divide";
             myTextBox.Focus();
@@ -181,6 +149,129 @@ namespace CalculatedSpeedometer
 
         }
 
+        private void myTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Add)
+            {
+                string myValueStr;
+                myValueStr = myTextBox.Text;
+                myValues[0] = double.Parse(myValueStr);
+                myTextBox.Clear();
+                choice = "plus";
+                myTextBox.Focus();
+            }
+
+            else if(e.Key == Key.Subtract)
+            {
+                string myValueStr;
+                myValueStr = myTextBox.Text;
+                myValues[0] = double.Parse(myValueStr);
+                myTextBox.Clear();
+                choice = "minus";
+                myTextBox.Focus();
+            }
+
+            else if(e.Key == Key.Multiply)
+            {
+                string myValueStr;
+                myValueStr = myTextBox.Text;
+                myValues[0] = double.Parse(myValueStr);
+                myTextBox.Clear();
+                choice = "multiply";
+                myTextBox.Focus();
+            }
+
+            else if(e.Key == Key.Divide)
+            {
+                string myValueStr;
+                myValueStr = myTextBox.Text;
+                myValues[0] = double.Parse(myValueStr);
+                myTextBox.Clear();
+                choice = "divide";
+                myTextBox.Focus();
+            }
+
+            else if(e.Key == Key.Enter)
+            {
+                string myValueStr;
+                myValueStr = myTextBox.Text;
+                try
+                {
+                    myValues[1] = double.Parse(myValueStr);
+                }
+
+                catch (Exception)
+                {
+                    MessageBox.Show("Must enter a numeric value");
+                    return;
+                }
+                Speedometer pg = new Speedometer();
+                double max;
+
+                if (choice == "plus")
+                {
+                    calculatedValue = myValues[0] + myValues[1];
+
+                }
+
+                else if (choice == "minus")
+                {
+                    calculatedValue = myValues[0] - myValues[1];
+
+                }
+
+                else if (choice == "multiply")
+                {
+                    calculatedValue = myValues[0] * myValues[1];
+                }
+
+                else if (choice == "divide")
+                {
+                    calculatedValue = myValues[0] / myValues[1];
+                }
+
+                if (calculatedValue != 0)                                     // calculates the max value for the gauge by using the Log10 function on the calculatedValue,
+                                                                              // truncating the decimal of the result with the Floor function, adding 1 to the result,
+                                                                              // and then raising 10 to the power of the result                                                              
+                {
+                    max = Math.Pow(10, Math.Floor(Math.Log10(calculatedValue) + 1));
+                }
+
+                else
+                {
+                    max = 1;
+                }
+
+                if (calculatedValue < 0)
+                {
+                    myTextBox.Clear();
+                    NavigationService.Navigate(new ErrorPage());
+                    return;
+                }
+
+                pg.GaugeCharacteristics.EndValue = max;
+                pg.GaugeValues.Value = calculatedValue;
+                NavigationService.Navigate(pg);
+            }
+
+            
+
+        }
+
+
+        private void myTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+            foreach (char ch in e.Text)
+            {
+                if (!Char.IsDigit(ch))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
     }
 }
+
 

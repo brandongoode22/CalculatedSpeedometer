@@ -10,6 +10,8 @@
 
     <StackPanel >
         <Frame x:Name="main" NavigationUIVisibility="Hidden" ></Frame>
+        <TextBlock TextWrapping="Wrap" FontSize="20">This application is a basic Positive Number calculator that then displays your result
+as a value on a speedometer.</TextBlock>
         <Button x:Name="goToCalculator" Click="goToCalculator_Click" >Go to Calculator</Button>
         </StackPanel>
 </Window>

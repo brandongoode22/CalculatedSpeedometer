@@ -12,7 +12,7 @@
         <Border BorderThickness="2" BorderBrush="Black">
             <StackPanel>
                 <TextBlock Margin="0,0,0,1" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="13" FontFamily="Verdana"><Bold>Positive Number Calculator</Bold></TextBlock>
-                <TextBox x:Name="myTextBox" HorizontalContentAlignment="Right" FontSize="14" VerticalContentAlignment="Center" Height="30" ></TextBox>
+                <TextBox x:Name="myTextBox" KeyDown="myTextBox_KeyDown" PreviewTextInput="myTextBox_PreviewTextInput" HorizontalContentAlignment="Right" FontSize="14" VerticalContentAlignment="Center" Height="30" ></TextBox>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="Plus" Click="Plus_Click" FontSize="30" Height="50" Width="100">+</Button>
                     <Button x:Name="Minus" Click="Minus_Click" FontSize="30" Height="50" Width="100">-</Button>
