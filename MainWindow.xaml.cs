@@ -29,6 +29,7 @@ namespace CalculatedSpeedometer
         {
             main.Content = new Calculator();
             goToCalculator.Visibility = Visibility.Hidden;
+            greeting.Visibility = Visibility.Hidden;
 
         }
     }
