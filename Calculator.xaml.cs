@@ -20,7 +20,7 @@ namespace CalculatedSpeedometer
     /// </summary>
     public partial class Calculator : Page
     {
-        double[] myValues = new double[2];
+        double[] myValues = {0, 0};
         string choice;
         double calculatedValue;
         public Calculator()
@@ -70,6 +70,7 @@ namespace CalculatedSpeedometer
 
         private void myTextBox_KeyDown(object sender, KeyEventArgs e)
         {
+
             if(e.Key == Key.Add)
             {
                 OperatorChoice(this, "plus");
@@ -105,7 +106,12 @@ namespace CalculatedSpeedometer
 
             foreach (char ch in e.Text)
             {
-                if (!Char.IsDigit(ch))
+                if (Char.IsDigit(ch) || ch == '.')
+                {
+                    e.Handled = false;
+                }
+
+                else
                 {
                     e.Handled = true;
                 }
@@ -116,7 +122,16 @@ namespace CalculatedSpeedometer
         private static void OperatorChoice (Calculator calculator, string choice)
         {
             string myValueStr = calculator.myTextBox.Text;
-            calculator.myValues[0] = double.Parse(myValueStr);
+            try
+            {
+                calculator.myValues[0] = double.Parse(myValueStr);
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid Operation");
+                return;
+            }
             calculator.myTextBox.Clear();
             calculator.choice = choice;
             calculator.myTextBox.Focus();
@@ -126,6 +141,9 @@ namespace CalculatedSpeedometer
         {
             string myValueStr;
             myValueStr = calculator.myTextBox.Text;
+            Speedometer speedometer = new Speedometer();
+            double max;
+
             try
             {
                 calculator.myValues[1] = double.Parse(myValueStr);
@@ -133,11 +151,10 @@ namespace CalculatedSpeedometer
 
             catch (Exception)
             {
-                MessageBox.Show("Must enter a numeric value");
+                MessageBox.Show("Must enter a numeric value first");
                 return;
             }
-            Speedometer pg = new Speedometer();
-            double max;
+
 
             if (calculator.choice == "plus")
             {
@@ -161,9 +178,14 @@ namespace CalculatedSpeedometer
                 calculator.calculatedValue = calculator.myValues[0] / calculator.myValues[1];
             }
 
+            else
+            {
+                calculator.calculatedValue = calculator.myValues[1];
+            }
+
             if (calculator.calculatedValue != 0)                                     // calculates the max value for the gauge by using the Log10 function on the calculatedValue,
-                                                                          // truncating the decimal of the result with the Floor function, adding 1 to the result,
-                                                                          // and then raising 10 to the power of the result                                                              
+                                                                                     // truncating the decimal of the result with the Floor function, adding 1 to the result,
+                                                                                     // and then raising 10 to the power of the result                                                              
             {
                 max = Math.Pow(10, Math.Floor(Math.Log10(calculator.calculatedValue) + 1));
             }
@@ -180,11 +202,11 @@ namespace CalculatedSpeedometer
                 return;
             }
 
-            pg.GaugeCharacteristics.EndValue = max;
-            pg.GaugeValues.Value = calculator.calculatedValue;
-            calculator.NavigationService.Navigate(pg);
+            speedometer.GaugeCharacteristics.EndValue = max;
+            speedometer.GaugeValues.Value = calculator.calculatedValue;
+            speedometer.DisplayValue.Text = calculator.calculatedValue.ToString();
+            calculator.NavigationService.Navigate(speedometer);
         }
-
     }
 }
 

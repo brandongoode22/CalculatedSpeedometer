@@ -7,15 +7,20 @@
       xmlns:gauge="clr-namespace:Syncfusion.UI.Xaml.Gauges;assembly=Syncfusion.SfGauge.Wpf"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="800"
-      Title="Speedometer">
+      Title="Speedometer" 
+      Background="Black">
 
     <StackPanel>
-        <gauge:SfCircularGauge Height="300">
+        <gauge:SfCircularGauge Height="300" HeaderAlignment="Bottom">
+            <gauge:SfCircularGauge.GaugeHeader >
+                <Bold>
+                    <TextBlock FontFamily="Times New Roman" FontSize="16" Margin="0,0,0,10" x:Name="DisplayValue" Padding="10" Text="" TextAlignment="Center" Background="White" Height="40" Width="120" />
+                </Bold>
+            </gauge:SfCircularGauge.GaugeHeader>
             <gauge:SfCircularGauge.Scales>
-                <gauge:CircularScale x:Name="GaugeCharacteristics" RimStroke="Black">
+                <gauge:CircularScale x:Name="GaugeCharacteristics" RimStroke="LimeGreen" LabelStroke="White">
                     <gauge:CircularScale.Pointers>
                         <gauge:CircularPointer x:Name="GaugeValues" PointerType="NeedlePointer"
-                                   Value="60"
                                    NeedleLengthFactor="0.5"
                                    NeedlePointerType="Triangle"
                                    PointerCapDiameter="9"
