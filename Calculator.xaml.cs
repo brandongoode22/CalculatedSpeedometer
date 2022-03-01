@@ -51,8 +51,7 @@ namespace CalculatedSpeedometer
             OperatorChoice(this, "divide");
         }
 
-        // Method that takes whatever operation was chosen from the previous button press, performs that calculation
-        // on the two values, stores the answer in calculatedValue, and then navigates to the Speedometer page.
+
         private void Equals_Click(object sender, RoutedEventArgs e)
         {
             CalcResult(this);
@@ -118,7 +117,10 @@ namespace CalculatedSpeedometer
             }
         }
 
-
+        // Method that takes a Calculator object and a string representing the operator chosen as parameters.
+        // Takes whatever value is in the TextBox currently, converts it
+        // to a double, and stores it in the first element of the myValues array. 
+        // Sets the value of choice to whatever button was pressed. 
         private static void OperatorChoice (Calculator calculator, string choice)
         {
             string myValueStr = calculator.myTextBox.Text;
@@ -137,6 +139,8 @@ namespace CalculatedSpeedometer
             calculator.myTextBox.Focus();
         }
 
+        // Method that takes whatever operation was chosen from the previous button press, performs that calculation
+        // on the two values, stores the answer in calculatedValue, and then navigates to the Speedometer page.
         private static void CalcResult(Calculator calculator)
         {
             string myValueStr;
@@ -174,8 +178,22 @@ namespace CalculatedSpeedometer
             }
 
             else if (calculator.choice == "divide")
-            {
-                calculator.calculatedValue = calculator.myValues[0] / calculator.myValues[1];
+            { 
+                if(calculator.myValues[1] == 0)
+                {
+                    calculator.NavigationService.Navigate(new ErrorPage(calculator.calculatedValue, calculator.myValues[1]));
+                    return;
+                }
+
+                if (calculator.myValues[0] / calculator.myValues[1] < 0.00001)
+                {
+                    calculator.calculatedValue = 0;
+                }
+
+                else
+                {
+                    calculator.calculatedValue = calculator.myValues[0] / calculator.myValues[1];
+                }
             }
 
             else
@@ -198,9 +216,18 @@ namespace CalculatedSpeedometer
             if (calculator.calculatedValue < 0)
             {
                 calculator.myTextBox.Clear();
-                calculator.NavigationService.Navigate(new ErrorPage());
+                calculator.NavigationService.Navigate(new ErrorPage(calculator.calculatedValue));
                 return;
             }
+
+            else if (calculator.calculatedValue >= 10000000)
+            {
+                calculator.myTextBox.Clear();
+                calculator.NavigationService.Navigate(new ErrorPage(calculator.calculatedValue));
+                return;
+            }
+
+            calculator.calculatedValue = Math.Round(calculator.calculatedValue, 5);
 
             speedometer.GaugeCharacteristics.EndValue = max;
             speedometer.GaugeValues.Value = calculator.calculatedValue;

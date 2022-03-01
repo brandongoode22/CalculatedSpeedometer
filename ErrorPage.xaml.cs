@@ -20,9 +20,18 @@ namespace CalculatedSpeedometer
     /// </summary>
     public partial class ErrorPage : Page
     {
-        public ErrorPage()
+        public ErrorPage(double calculatedValue, double divideByZero=1)
         {
             InitializeComponent();
+            if(calculatedValue >= 10000000)
+            {
+                errorText.Text = "Can't display values greater than 9,999,999";
+            }
+
+            else if(divideByZero == 0)
+            {
+                errorText.Text = "Can't divide by zero";
+            }
         }
 
         private void returnToCalculator_Click(object sender, RoutedEventArgs e)
