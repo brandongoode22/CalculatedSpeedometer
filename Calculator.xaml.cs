@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 namespace CalculatedSpeedometer
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Calculator.xaml
     /// </summary>
     public partial class Calculator : Page
     {
         double[] myValues = {0, 0};
         string choice;
         double calculatedValue;
+        bool opSelected = false;
         public Calculator()
         {
             InitializeComponent();
@@ -123,20 +124,33 @@ namespace CalculatedSpeedometer
         // Sets the value of choice to whatever button was pressed. 
         private static void OperatorChoice (Calculator calculator, string choice)
         {
-            string myValueStr = calculator.myTextBox.Text;
-            try
+            if (!calculator.opSelected)
             {
-                calculator.myValues[0] = double.Parse(myValueStr);
+                string myValueStr = calculator.myTextBox.Text;
+                try
+                {
+                    calculator.myValues[0] = double.Parse(myValueStr);
+                }
+
+                catch (Exception)
+                {
+                    MessageBox.Show("Invalid Operation");
+                    return;
+                }
+                calculator.myTextBox.Clear();
+                calculator.choice = choice;
+                calculator.myTextBox.Focus();
+                calculator.opSelected = true;
+
             }
 
-            catch (Exception)
+            else
             {
-                MessageBox.Show("Invalid Operation");
-                return;
+                calculator.opSelected = false;
+                CalcResult(calculator);
+                
             }
-            calculator.myTextBox.Clear();
-            calculator.choice = choice;
-            calculator.myTextBox.Focus();
+
         }
 
         // Method that takes whatever operation was chosen from the previous button press, performs that calculation
@@ -147,6 +161,7 @@ namespace CalculatedSpeedometer
             myValueStr = calculator.myTextBox.Text;
             Speedometer speedometer = new Speedometer();
             double max;
+            calculator.calculatedValue = 0;
 
             try
             {

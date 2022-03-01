@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace CalculatedSpeedometer
 {
     /// <summary>
-    /// Interaction logic for Calculator.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
