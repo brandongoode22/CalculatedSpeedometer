@@ -6,12 +6,11 @@
         xmlns:local="clr-namespace:CalculatedSpeedometer"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         mc:Ignorable="d"
-        Title="CalculatedSpeedometer" Height="450" Width="600">
+        Title="CalculatedSpeedometer" Height="450" Width="600"
+        x:Name="myWindow">
 
-    <StackPanel >
-        <Frame x:Name="main" NavigationUIVisibility="Hidden" ></Frame>
-        <TextBlock x:Name="greeting" TextWrapping="Wrap" FontSize="20">This application is a basic Positive Number calculator that then displays your result
-as a value on a speedometer.</TextBlock>
-        <Button x:Name="goToCalculator" Click="goToCalculator_Click" >Go to Calculator</Button>
-        </StackPanel>
+    <Frame Source="Calculator.xaml" NavigationUIVisibility="Hidden">
+
+    </Frame>
+        
 </Window>

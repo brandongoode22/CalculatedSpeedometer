@@ -24,13 +24,5 @@ namespace CalculatedSpeedometer
         {
             InitializeComponent();
         }
-
-        private void goToCalculator_Click(object sender, RoutedEventArgs e)
-        {
-            main.Content = new Calculator();
-            goToCalculator.Visibility = Visibility.Hidden;
-            greeting.Visibility = Visibility.Hidden;
-
-        }
     }
 }

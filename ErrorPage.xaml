@@ -10,6 +10,6 @@
 
     <StackPanel>
         <TextBlock x:Name="errorText" Height="40" FontSize="18" HorizontalAlignment="Center">Results less than zero can't be displayed</TextBlock>
-        <Button x:Name="returnToCalculator" Click="returnToCalculator_Click" Height="50" FontSize="15">Calculate Another Value</Button>
+        <Button x:Name="returnToCalculator" Click="returnToCalculator_Click" Width="250" Height="50" FontSize="15">Calculate Another Value</Button>
     </StackPanel>
 </Page>
