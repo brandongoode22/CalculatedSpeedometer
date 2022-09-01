@@ -1,0 +1,1 @@
+C# project built using the WPF framework. A simple positive number calculator that graphically displays the calculated results on a speedometer gauge.  ```git clone``` this repository and then open the ```CalculatedSpeedometer.sln``` file in Visual Studio to run. 
